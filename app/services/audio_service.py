@@ -12,7 +12,10 @@ class AudioService:
 
     def speech_to_text(self, audio_data: bytes) -> str:
         try:
-            result = self.pipe(audio_data)
+            result = self.pipe(
+                audio_data,
+                return_timestamps=True
+            )
             return result["text"]
         except Exception as e:
             print(f"Audio processing failed: {str(e)}")
